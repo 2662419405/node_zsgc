@@ -11,6 +11,6 @@ router.use(require("./router.js"));
 app.use(router.routes()); /*启动路由*/
 app.use(router.allowedMethods());
 
-app.listen(10010, () => {
-  console.log(`服务器运行在10010端口上`);
+app.listen(10020, () => {
+  console.log(`服务器运行在10020端口上`);
 });
