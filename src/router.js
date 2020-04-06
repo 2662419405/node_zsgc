@@ -9,8 +9,40 @@ code.get("/user", async (ctx) => {
   ctx.body = obj;
 });
 
-// 删
+// 改
+code.get("/edit", async (ctx) => {
+  const params = ctx.query;
+  if (params.id && params.name && params.age && params.money && params.phone) {
+    try {
+      const obj = await Meituan.updateOne(
+        { _id: params.id },
+        {
+          name: params.name,
+          age: params.age,
+          money: params.money,
+          phone: params.phone,
+        }
+      );
+      ctx.body = {
+        code: 1,
+        message: "数据修改成功",
+        obj,
+      };
+    } catch (e) {
+      ctx.body = {
+        code: 0,
+        message: "数据修改失败",
+      };
+    }
+  } else {
+    ctx.body = {
+      code: 0,
+      message: "数据修改失败",
+    };
+  }
+});
 
+// 删
 code.get("/delete", async (ctx) => {
   const params = ctx.query;
   if (params.id) {
